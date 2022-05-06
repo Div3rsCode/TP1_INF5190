@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+
+{%block content%}
+<div class="container px-4 py-5" id="featured-3">
+    <h1 class="pb-2 border-bottom">{{ titre }}</h1>
+    <div class="row  row-cols-1 row-cols-md-2 g-4">
+        {% for article in articles %}
+        <div class="feature col">
+            <div class="card">
+                <div class="card-header">
+                    <h2>{{ article[0] }}</h2>
+                </div>
+                <div class="card-body">
+                    <a href="/modifier/{{ article[2] }}" class="btn btn-primary">Modifier l'article</a>
+                </div>
+                <div class="card-footer text-muted">
+                    Publié le {{ article[1] }}
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<div class="w-50 mx-auto">
+    <a href="/admin-nouveau" class="btn btn-outline-primary">Créer un nouvel article</a>
+</div>
+{%endblock%}

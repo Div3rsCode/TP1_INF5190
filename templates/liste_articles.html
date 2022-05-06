@@ -1,0 +1,68 @@
+{% extends "layout.html" %}
+{%block content%}
+<div class="container px-4 py-5" id="featured-3">
+    <h1 class="pb-2 border-bottom">{{ titre }}</h1>
+    <div class="row  row-cols-1 row-cols-md-2 g-4">
+
+
+        {% if articles|length == 0 %}
+        <h2>Aucun résultat trouvé</h2>
+
+        {% elif articles[0]|length == 3 %}
+        {% for article in articles %}
+        <div class="feature col">
+            <div class="card">
+                <div class="card-header">
+                    <a href="/article/{{ article[2] }}">
+                        <h2>{{ article[0] }}</h2>
+                    </a>
+                </div>
+                <div class="card-body">
+                    <p class="card-text">Publié le {{ article[1] }}</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+
+        {% else %}
+        {% for article in articles %}
+        <div class="feature col">
+            <div class="card">
+                <div class="card-header">
+                    <h2>{{ article[1] }}</h2>
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">Auteur: {{ article[2] }}</h5>
+                    <p class="card-text">{{ article[4] }}</p>
+                    <a href="/article/{{ article[0] }}" class="btn btn-primary">Lien vers l'article</a>
+                </div>
+                <div class="card-footer text-muted">
+                    Publié le {{ article[3] }}
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+
+        {% endif %}
+
+    </div>
+</div>
+
+<div class="container ">
+    <hr class="my-4">
+    <div class="row height d-flex justify-content-center align-items-center">
+        <div class="col-md-8">
+            <div class="input-group mb-3">
+                <form action="/" method="post">
+                    <label for="recherche" class="form-label">Rechercher un article:</label>
+                    <input class="form-control" type="search" name="recherche" minlength="2" maxlength="50"
+                        pattern="[A-Za-z]*" placeholder="Écrivez un mot-clef" id="recherche">
+                    <button type="submit" class="btn btn-primary">Rechercher</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{%endblock%}

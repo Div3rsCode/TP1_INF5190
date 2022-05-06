@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+
+{%block content%}
+<br>
+<div class="container">
+    <main>
+        <div class="row g-5">
+            <div class="col-md-6 col-md-offset-3 column">
+                <h2 class="mb-3">Modification d'article:</h2>
+                <form method="POST" action="/modifier/{{ identifiant }}" class="needs-validation" novalidate
+                    action="/admin-nouveau" id="form_creation">
+                    <div class="row g-3">
+                        <div class="col-sm-6">
+                            <label for="titre_pub" class="form-label">Titre</label>
+                            <input type="text" class="form-control" id="titre_pub" name="titre" required
+                                value="{{ titre }}" pattern="[A-Za-z\ -']+" minlength="2">
+                            <div class="invalid-feedback">
+                                Lettres seulement permises.
+                            </div>
+                        </div>
+                        <br>
+
+                        <div class="col-12">
+                            <div class="input-group has-validation">
+                                <span class="input-group-text">Paragraphe</span>
+                                <input class="form-control input-lg" id="inputlg" type="text" name="paragraphe" required
+                                    value="{{ paragraphe }}" pattern="[A-Za-z,.':;\-\ ]+">
+
+                                <div class="invalid-feedback">
+                                    Lettres et ponctuation seulement permis.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    {% if erreur %}
+                    <p style="color:red">{{ erreur }}</p>
+                    {% endif %}
+                    <button class="w-100 btn btn-primary btn-lg" type="submit">Modifier l'article</button>
+                </form>
+            </div>
+        </div>
+    </main>
+</div>
+{%endblock%}
